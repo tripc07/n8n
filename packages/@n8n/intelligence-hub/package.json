@@ -1,0 +1,50 @@
+{
+  "name": "@n8n/intelligence-hub",
+  "version": "1.0.0",
+  "description": "Intelligence Hub nodes for n8n - orchestrate AI agents, tools, and processes",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "scripts": {
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "dev": "tsc-watch -p tsconfig.build.json --onCompilationComplete \"tsc-alias -p tsconfig.build.json\"",
+    "format": "biome format --write .",
+    "format:check": "biome ci .",
+    "lint": "eslint . --quiet",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "n8n-workflow": "^1.106.0",
+    "ssh2": "^1.15.0",
+    "ws": "^8.17.1",
+    "axios": "^1.8.3",
+    "puppeteer": "^21.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.50",
+    "@types/ssh2": "^1.15.0",
+    "@types/ws": "^8.18.1",
+    "rimraf": "^5.0.1",
+    "tsc-alias": "^1.8.10",
+    "tsc-watch": "^6.2.0",
+    "typescript": "^5.9.2"
+  },
+  "files": [
+    "dist",
+    "nodes",
+    "credentials"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [],
+    "nodes": [
+      "dist/nodes/TerminalAgent/TerminalAgent.node.js",
+      "dist/nodes/LMStudioAgent/LMStudioAgent.node.js",
+      "dist/nodes/MCPConnector/MCPConnector.node.js",
+      "dist/nodes/WebBrowseAgent/WebBrowseAgent.node.js",
+      "dist/nodes/HubMonitor/HubMonitor.node.js"
+    ]
+  }
+}
